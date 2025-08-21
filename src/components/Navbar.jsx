@@ -6,13 +6,13 @@ import { api } from '../utils/api.js'
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const nav = useNavigate();
-
+  const token=localStorage.getItem('token')
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (token) {
       //api.getCurrent().then(res => setUser(res.data)).catch(() => setUser(null));
       api.getCurrent().then(res => setUser(res.data)).catch(() => setUser(null));
     }
-  }, []);
+  }, [token]);
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -27,7 +27,7 @@ const Navbar = () => {
         <ul className="navbar-nav me-auto">
           <li className="nav-item"><Link className="nav-link" to="/cart">Panier</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/orders">Commandes</Link></li>
-          {user?.Role === 'admin' ?<li className="nav-item"><Link className="nav-link" to="/admin/create">Créer produit</Link></li>:null}
+          {localStorage.getItem('token') && user?.Role === 'admin' ?<li className="nav-item"><Link className="nav-link" to="/admin/create">Créer produit</Link></li>:null}
         </ul>
         <ul className="navbar-nav">
           {user ? (

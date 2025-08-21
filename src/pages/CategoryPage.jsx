@@ -15,9 +15,12 @@ function CategoryPage() {
     setLoading(true);
     api.getProducts()
       .then(res => {
-        // filtrer selon la catégorie, ici on suppose product.category correspond au paramètre type
-        const filtered = res.data.filter(p => p.Category === type || p.Category === undefined);
+       console.log(res.data)
+       console.log(type)
+       console.log(type);
+        const filtered = res.data.filter(p => p.Category === type );
         setProducts(filtered);
+        console.log(products)
       })
       .catch(console.error)
       .finally(() => setLoading(false));

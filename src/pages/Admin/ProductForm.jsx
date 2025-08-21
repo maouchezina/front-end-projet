@@ -54,7 +54,7 @@ const ProductForm = () => {
           <label>Category</label>
     
           
-            <select className="form-control"  onChange={(e)=>setCategory(e.target.value)}>{ca.map((el)=><option>{el}</option>)}</select>
+            <select className="form-control"  onChange={(e)=>setCategory(e.target.value)}>{ca.map((el)=><option value={el} >{el}</option>)}</select>
         </div>
         <div className="mb-3">
           <label>Prix (€)</label>

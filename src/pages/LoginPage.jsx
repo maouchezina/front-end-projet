@@ -10,23 +10,16 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.login({ email, Password: password });
-      const role = res.data.user.Role;
+      const res = await api.login({email:email,password:password});
+     
       localStorage.setItem('token', res.data.token);
 
       localStorage.setItem('user', JSON.stringify(res.data.user));
       console.log(res.data)
+      api.getCurrent().then().catch()
       alert('Connexion réussie');
-      // if admin
-      // Redirection en fonction du rôle
-      
-      if (role === 'admin') {
-        navigate('/admin'); // redirige vers la page admin
-      } else {
-        navigate('/user'); // redirige vers la page client
-      }
-      //
-   //navigate('/');
+      navigate('/'); 
+     
     } catch (error) {
       alert('Erreur de connexion');
             console.error(error);
